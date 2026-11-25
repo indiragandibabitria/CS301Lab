@@ -1,0 +1,51 @@
+<!-- Specify the document type as HTML5 -->
+<!DOCTYPE html>
+<!-- Define the root element and set the language to English -->
+<html lang="en">
+<head>
+    <!-- Set character encoding to UTF-8 for universal character support -->
+    <meta charset="UTF-8">
+    <!-- Ensure proper rendering and touch zooming on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the page title shown on the browser tab -->
+    <title>Simple To-Do App</title>
+    <!-- Link external CSS stylesheet for styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container wrapper for the entire To-Do application -->
+    <div class="todo-wrapper">
+        <!-- Main heading for the application -->
+        <h2>My Tasks</h2>
+        <!-- Display area for the active task counter -->
+        <div id="itemCount" class="item-count">0 active items left</div>
+
+        <!-- Container for task input and creation button -->
+        <div class="input-section">
+            <!-- Text input field for entering new task descriptions -->
+            <input type="text" id="taskInput" placeholder="Add a new task..." onkeypress="handleKeyPress(event)">
+            <!-- Button to trigger adding a new task -->
+            <button class="add-btn" onclick="addTask()">Add</button>
+        </div>
+
+        <!-- Navigation container for filtering task view states -->
+        <div class="tabs-section">
+            <!-- Tab button to display all tasks -->
+            <div id="tab-all" class="tab active" onclick="switchTab('all')">All</div>
+            <!-- Tab button to display active tasks only -->
+            <div id="tab-active" class="tab" onclick="switchTab('active')">Active</div>
+            <!-- Tab button to display completed tasks only -->
+            <div id="tab-completed" class="tab" onclick="switchTab('completed')">Completed</div>
+        </div>
+
+        <!-- Unordered list element where tasks will be dynamically rendered -->
+        <ul id="taskList"></ul>
+
+        <!-- Button to remove all completed tasks from the list -->
+        <button class="clear-btn" onclick="clearCompleted()">Clear Completed</button>
+    </div>
+
+    <!-- Link external JavaScript file for dynamic app logic -->
+    <script src="script.js"></script>
+</body>
+</html>

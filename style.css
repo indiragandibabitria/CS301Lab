@@ -1,0 +1,465 @@
+/* Reset default browser margins, padding, and set universal box-sizing */
+* {
+    /* Remove default margin from all elements */
+    margin: 0;
+    /* Remove default padding from all elements */
+    padding: 0;
+    /* Include padding and border in the element's total width and height */
+    box-sizing: border-box;
+    /* Set default font family stack for the application */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style the body element to center the todo app and set up the background */
+body {
+    /* Apply a dark green radial gradient starting from the top right */
+    background: radial-gradient(circle at top right, #0e1a2a, #050d0a 70%);
+    /* Set the default text color to a light ice blue */
+    color: #e0f2fe;
+    /* Enable Flexbox layout on the body */
+    display: flex;
+    /* Center flex items horizontally */
+    justify-content: center;
+    /* Center flex items vertically */
+    align-items: center;
+    /* Ensure body takes up at least full viewport height */
+    min-height: 100vh;
+    /* Add padding around the edges of the viewport */
+    padding: 20px;
+}
+
+/* Main container wrapper for the todo list application */
+.todo-wrapper {
+    /* Set dark semi-transparent background color */
+    background: rgba(16, 28, 25, 0.85);
+    /* Apply modern backdrop blur effect for glassmorphism look */
+    backdrop-filter: blur(12px);
+    /* Apply WebKit prefix for backdrop blur compatibility in Safari */
+    -webkit-backdrop-filter: blur(12px);
+    /* Make wrapper take up full available width */
+    width: 100%;
+    /* Limit the maximum width of the app container */
+    max-width: 480px;
+    /* Round the corners of the main container */
+    border-radius: 20px;
+    /* Set vertical (35px) and horizontal (30px) inner padding */
+    padding: 35px 30px;
+    /* Apply drop shadow and an inner highlight line along the top */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Add a subtle green border around the container */
+    border: 1px solid rgba(46, 117, 89, 0.3);
+    /* Set relative positioning so pseudo-elements can position absolute to it */
+    position: relative;
+}
+
+/* Accent top glowing border edge */
+/* Create a pseudo-element before the todo wrapper for a top accent glow */
+.todo-wrapper::before {
+    /* Required property to render pseudo-element */
+    content: '';
+    /* Position pseudo-element absolutely relative to .todo-wrapper */
+    position: absolute;
+    /* Align to the top of the container */
+    top: 0;
+    /* Indent 10% from the left edge */
+    left: 10%;
+    /* Indent 10% from the right edge */
+    right: 10%;
+    /* Set thickness of the accent line */
+    height: 1.5px;
+    /* Create horizontal green glowing gradient fading out at both ends */
+    background: linear-gradient(90deg, transparent, #22c55e, #10b981, transparent);
+}
+
+/* Main title header styling */
+h2 {
+    /* Set large font size for title */
+    font-size: 2.2rem;
+    /* Set heavy bold font weight */
+    font-weight: 800;
+    /* Center align the heading text */
+    text-align: center;
+    /* Define gradient background for text mask effect */
+    background: linear-gradient(135deg, #a7f3d0 0%, #34d399 100%);
+    /* Clip background gradient strictly to text shape */
+    -webkit-background-clip: text;
+    /* Make text fill transparent so background gradient shows through */
+    -webkit-text-fill-color: transparent;
+    /* Add small bottom margin below header */
+    margin-bottom: 5px;
+    /* Slightly tighten letter spacing for headline look */
+    letter-spacing: -0.5px;
+}
+
+/* Subtitle displaying item count */
+.item-count {
+    /* Set small text size */
+    font-size: 0.9rem;
+    /* Set light mint green color */
+    color: #6ee7b7;
+    /* Center align text */
+    text-align: center;
+    /* Add space below the item count */
+    margin-bottom: 30px;
+    /* Slightly lower opacity for visual hierarchy */
+    opacity: 0.85;
+}
+
+/* Input Bar */
+/* Container wrapping text input and add button */
+.input-section {
+    /* Enable flexbox layout to place input and button side-by-side */
+    display: flex;
+    /* Add space between input field and add button */
+    gap: 12px;
+    /* Add margin below input section */
+    margin-bottom: 25px;
+}
+
+/* Text input field for adding tasks */
+input[type="text"] {
+    /* Allow input to grow and take up remaining space */
+    flex: 1;
+    /* Dark background for input field */
+    background: #0b1411;
+    /* Subtle green border */
+    border: 1px solid rgba(46, 117, 89, 0.4);
+    /* Rounded corners for input */
+    border-radius: 12px;
+    /* Internal spacing for input text */
+    padding: 14px 18px;
+    /* Light ice blue text color */
+    color: #e0f2fe;
+    /* Standard font size */
+    font-size: 0.95rem;
+    /* Remove default focus outline */
+    outline: none;
+    /* Smooth transition for focus states */
+    transition: all 0.3s ease;
+}
+
+/* Focus state for text input field */
+input[type="text"]:focus {
+    /* Brighter green border when active */
+    border-color: #10b981;
+    /* Glowing green box shadow on focus */
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+}
+
+/* Placeholder text styling inside input field */
+input[type="text"]::placeholder {
+    /* Muted dark green color for placeholder text */
+    color: #3f6255;
+}
+
+/* Button to submit/add a new task */
+button.add-btn {
+    /* Emerald green gradient background */
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    /* Dark green text color for contrast */
+    color: #041611;
+    /* Bold text weight */
+    font-weight: 700;
+    /* Remove default button border */
+    border: none;
+    /* Match input field border radius */
+    border-radius: 12px;
+    /* Horizontal padding inside button */
+    padding: 0 24px;
+    /* Matching text size */
+    font-size: 0.95rem;
+    /* Show pointer cursor on hover */
+    cursor: pointer;
+    /* Smooth transition for hover animations */
+    transition: all 0.3s ease;
+    /* Outer glowing green shadow */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Hover state for add button */
+button.add-btn:hover {
+    /* Slightly lift button up */
+    transform: translateY(-1px);
+    /* Intensify glowing shadow on hover */
+    box-shadow: 0 0 22px rgba(16, 185, 129, 0.6);
+}
+
+/* Active click state for add button */
+button.add-btn:active {
+    /* Push button down slightly on click */
+    transform: translateY(1px);
+}
+
+/* Navigation Tabs */
+/* Filter tabs container wrapper */
+.tabs-section {
+    /* Dark semi-transparent background pill */
+    background: rgba(11, 20, 17, 0.6);
+    /* Rounded corners for tab pill bar */
+    border-radius: 12px;
+    /* Inner padding around tabs */
+    padding: 4px;
+    /* Enable flexbox for equal distribution */
+    display: flex;
+    /* Distribute tabs evenly across space */
+    justify-content: space-between;
+    /* Bottom margin before task list */
+    margin-bottom: 25px;
+    /* Subtle green border around tabs wrapper */
+    border: 1px solid rgba(46, 117, 89, 0.25);
+}
+
+/* Individual tab button */
+.tab {
+    /* Distribute equal width to each tab */
+    flex: 1;
+    /* Center tab text */
+    text-align: center;
+    /* Vertical padding for click area */
+    padding: 10px 0;
+    /* Small font size */
+    font-size: 0.85rem;
+    /* Semi-bold text */
+    font-weight: 600;
+    /* Muted green text color */
+    color: #558574;
+    /* Show pointer cursor */
+    cursor: pointer;
+    /* Round corners for inner tab highlighters */
+    border-radius: 8px;
+    /* Smooth state transition */
+    transition: all 0.2s ease;
+    /* Prevent text highlight on click */
+    user-select: none;
+}
+
+/* Hover state for tabs */
+.tab:hover {
+    /* Brighten text color on hover */
+    color: #a7f3d0;
+}
+
+/* Active selected tab state */
+.tab.active {
+    /* Light green tint background */
+    background: rgba(16, 185, 129, 0.12);
+    /* Vibrant green text color */
+    color: #10b981;
+    /* Inset green border shadow to mark active state */
+    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+/* Task Cards */
+/* Unordered task list container */
+ul {
+    /* Remove default list bullet points */
+    list-style: none;
+    /* Restrict list height for scrollability */
+    max-height: 280px;
+    /* Enable vertical scrollbar when overflowing */
+    overflow-y: auto;
+    /* Right padding so contents don't touch scrollbar */
+    padding-right: 4px;
+}
+
+/* Thin green scrollbar UI */
+/* Scrollbar width track targeting WebKit browsers */
+ul::-webkit-scrollbar {
+    /* Set narrow scrollbar width */
+    width: 4px;
+}
+/* Scrollbar track background styling */
+ul::-webkit-scrollbar-track {
+    /* Subtle dark transparent background for track */
+    background: rgba(0,0,0,0.1);
+}
+/* Scrollbar thumb handle styling */
+ul::-webkit-scrollbar-thumb {
+    /* Muted green color for scrollbar handle */
+    background: rgba(46, 117, 89, 0.5);
+    /* Fully round the scrollbar thumb */
+    border-radius: 10px;
+}
+
+/* Individual task card item */
+li {
+    /* Semi-transparent dark green card background */
+    background: rgba(15, 27, 23, 0.7);
+    /* Subtle card border */
+    border: 1px solid rgba(46, 117, 89, 0.35);
+    /* Inner padding of task card */
+    padding: 16px 20px;
+    /* Round corners of task card */
+    border-radius: 12px;
+    /* Margin separation between tasks */
+    margin-bottom: 12px;
+    /* Use flexbox layout */
+    display: flex;
+    /* Push checkbox/text to left and delete button to right */
+    justify-content: space-between;
+    /* Vertically center card items */
+    align-items: center;
+    /* Smooth transitions for hover animations */
+    transition: all 0.3s ease;
+    /* Apply entry animation when task appears */
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Keyframe definition for task card fade-in animation */
+@keyframes fadeIn {
+    /* Initial state: invisible and shifted 5px down */
+    from { opacity: 0; transform: translateY(5px); }
+    /* Final state: fully visible and in normal position */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover state for individual task card */
+li:hover {
+    /* Highlight border color on hover */
+    border-color: rgba(52, 211, 153, 0.4);
+    /* Slightly lighten background on hover */
+    background: rgba(18, 33, 28, 0.85);
+}
+
+/* Left side wrapper containing custom checkbox and task title */
+.task-left {
+    /* Use flexbox layout */
+    display: flex;
+    /* Vertically align check and text */
+    align-items: center;
+    /* Spacing between checkbox and text */
+    gap: 14px;
+    /* Show pointer cursor across whole clickable area */
+    cursor: pointer;
+    /* Take up remaining space inside task card */
+    flex: 1;
+}
+
+/* Custom checkbox graphic UI */
+.custom-checkbox {
+    /* Set checkbox width */
+    width: 18px;
+    /* Set checkbox height */
+    height: 18px;
+    /* Thick dark green border */
+    border: 2.5px solid #2e7559;
+    /* Rounded box corners */
+    border-radius: 4px;
+    /* Allow setting dimensions inline */
+    display: inline-block;
+    /* Smooth state changes */
+    transition: all 0.2s;
+    /* Relative positioning for checkmark absolute placement */
+    position: relative;
+}
+
+/* Checkbox appearance when item is completed */
+li.completed .custom-checkbox {
+    /* Fill checkbox with solid green background */
+    background: #10b981;
+    /* Match border color to background */
+    border-color: #10b981;
+}
+
+/* Checkmark symbol inside completed checkbox */
+li.completed .custom-checkbox::after {
+    /* Checkmark text content symbol */
+    content: '✓';
+    /* Position absolutely to center inside checkbox */
+    position: absolute;
+    /* Center vertically */
+    top: 50%;
+    /* Center horizontally */
+    left: 50%;
+    /* Precise centering transform and slight scaling */
+    transform: translate(-50%, -52%) scale(0.9);
+    /* Dark contrast color for checkmark */
+    color: #041611;
+    /* Small checkmark font size */
+    font-size: 11px;
+    /* Heavy bold weight for checkmark */
+    font-weight: 900;
+}
+
+/* Task description label text */
+.task-text {
+    /* Standard readable text size */
+    font-size: 0.95rem;
+    /* Soft light slate text color */
+    color: #cbd5e1;
+    /* Transition for strikethrough color changes */
+    transition: all 0.25s ease;
+}
+
+/* Task description text when marked as completed */
+li.completed .task-text {
+    /* Draw line through completed text */
+    text-decoration: line-through;
+    /* Dim text color when completed */
+    color: #3f6255;
+}
+
+/* Delete cross mark button */
+/* Button for deleting an individual task */
+.delete-btn {
+    /* Remove default button background */
+    background: none;
+    /* Remove default border */
+    border: none;
+    /* Default muted green color */
+    color: #3f6255;
+    /* Slightly larger font size for the cross mark */
+    font-size: 1.15rem;
+    /* Show pointer cursor */
+    cursor: pointer;
+    /* Smooth transition on hover */
+    transition: all 0.2s ease;
+    /* Clickable padding area */
+    padding: 4px 8px;
+}
+
+/* Hover state for delete button */
+.delete-btn:hover {
+    /* Turn red on hover to indicate destructive action */
+    color: #ef4444;
+    /* Slightly enlarge icon on hover */
+    transform: scale(1.1);
+}
+
+/* Footer clear-completed section button */
+/* Button to clear all finished tasks */
+.clear-btn {
+    /* Make clear button stretch full wrapper width */
+    width: 100%;
+    /* Transparent background */
+    background: transparent;
+    /* Subtle green outline border */
+    border: 1px solid rgba(46, 117, 89, 0.4);
+    /* Rounded corners matching input fields */
+    border-radius: 12px;
+    /* Vertical padding inside clear button */
+    padding: 14px 0;
+    /* Bright mint green text */
+    color: #6ee7b7;
+    /* Standard font size */
+    font-size: 0.9rem;
+    /* Semi-bold text */
+    font-weight: 600;
+    /* Show pointer cursor */
+    cursor: pointer;
+    /* Space above clear button */
+    margin-top: 25px;
+    /* Smooth hover transitions */
+    transition: all 0.3s ease;
+}
+
+/* Hover state for clear button */
+.clear-btn:hover {
+    /* Light green tint on hover */
+    background: rgba(16, 185, 129, 0.08);
+    /* Solid bright green border on hover */
+    border-color: #10b981;
+    /* Soft green ambient glow on hover */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
